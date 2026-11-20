@@ -1,0 +1,102 @@
+{
+  "name": "PracticeRunLog",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Practice mode of the run (known, smart, tag, recent)."
+    },
+    "direction": {
+      "type": "string",
+      "description": "Which side was shown first: it or he."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "incomplete",
+        "error"
+      ],
+      "enumColors": [
+        "green",
+        "yellow",
+        "red"
+      ]
+    },
+    "attempts": {
+      "type": "number",
+      "description": "How many generate-and-check passes ran."
+    },
+    "generated": {
+      "type": "number",
+      "description": "Total AI candidates produced across all passes."
+    },
+    "accepted": {
+      "type": "number",
+      "description": "How many sentences passed every check."
+    },
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Accepted sentences with their translations."
+    },
+    "rejected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Each refused sentence and the exact reasons the checks gave."
+    },
+    "note": {
+      "type": "string",
+      "description": "Short human-readable outcome of the run."
+    }
+  },
+  "required": [
+    "mode",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

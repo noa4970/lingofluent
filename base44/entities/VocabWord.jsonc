@@ -1,0 +1,92 @@
+{
+  "name": "VocabWord",
+  "type": "object",
+  "properties": {
+    "italian": {
+      "type": "string",
+      "description": "The Italian word or phrase."
+    },
+    "hebrew": {
+      "type": "string",
+      "description": "The Hebrew translation."
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "m",
+        "f",
+        "n"
+      ],
+      "default": "n",
+      "enumColors": [
+        "blue",
+        "pink",
+        "green"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lowercase category tags."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "to_learn",
+        "learning",
+        "known"
+      ],
+      "default": "to_learn",
+      "enumColors": [
+        "gray",
+        "yellow",
+        "green"
+      ]
+    },
+    "knownAt": {
+      "type": "string",
+      "description": "ISO timestamp of when the word was moved to Known. Cleared as soon as it leaves Known."
+    },
+    "correct": {
+      "type": "number",
+      "default": 0
+    },
+    "total": {
+      "type": "number",
+      "default": 0
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "high",
+        "normal",
+        "low"
+      ],
+      "default": "normal",
+      "enumColors": [
+        "green",
+        "blue",
+        "gray"
+      ]
+    }
+  },
+  "required": [
+    "italian"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

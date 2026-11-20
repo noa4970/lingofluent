@@ -1,0 +1,36 @@
+{
+  "name": "PushConfig",
+  "type": "object",
+  "properties": {
+    "vapid_public": {
+      "type": "string",
+      "description": "VAPID public key (base64url, uncompressed P-256 point). Safe to hand to the browser."
+    },
+    "vapid_private": {
+      "type": "string",
+      "description": "VAPID private key JWK. Server-side only."
+    }
+  },
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

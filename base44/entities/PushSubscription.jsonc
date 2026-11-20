@@ -1,0 +1,80 @@
+{
+  "name": "PushSubscription",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "The browser push endpoint for this device."
+    },
+    "p256dh": {
+      "type": "string",
+      "description": "Device public key (base64url)."
+    },
+    "auth": {
+      "type": "string",
+      "description": "Device auth secret (base64url)."
+    },
+    "reminder_time": {
+      "type": "string",
+      "description": "Local time of day for the daily reminder, HH:MM."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone used to read reminder_time."
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "last_sent_date": {
+      "type": "string",
+      "description": "Local date (YYYY-MM-DD) the last reminder went out, so it is sent once a day."
+    }
+  },
+  "required": [
+    "endpoint",
+    "p256dh",
+    "auth"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

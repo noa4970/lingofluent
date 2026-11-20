@@ -1,0 +1,39 @@
+{
+  "name": "FlaggedSentence",
+  "type": "object",
+  "properties": {
+    "sentence": {
+      "type": "string",
+      "description": "The practice sentence as it was shown."
+    },
+    "translation": {
+      "type": "string",
+      "description": "The sentence's translation."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Practice mode the sentence came from (known, smart, tag, recent)."
+    },
+    "direction": {
+      "type": "string",
+      "description": "Which side was shown first: it or he."
+    }
+  },
+  "required": [
+    "sentence"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
