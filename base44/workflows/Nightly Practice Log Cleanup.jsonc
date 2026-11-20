@@ -1,0 +1,44 @@
+{
+  "name": "Nightly Practice Log Cleanup",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "nightly_practice_log_cleanup",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "purge_logs": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "purgePracticeLogs"
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Delete practice logs older than a day",
+            "description": "Keeps only the last 24 hours"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Deletes AI practice run logs older than one day, every night at 3am.",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 3 * * *",
+      "one_time_date": null,
+      "timezone": "Asia/Jerusalem",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  }
+}
